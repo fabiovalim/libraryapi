@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,4 +27,7 @@ public class Author {
 
     @Column(name = "nationality", nullable = false)
     private String nationality;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
 }
