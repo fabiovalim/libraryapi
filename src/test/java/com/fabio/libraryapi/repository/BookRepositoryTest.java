@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
@@ -53,5 +54,25 @@ public class BookRepositoryTest {
 
         book.setAuthor(author);
         bookRepository.save(book);
+    }
+
+    @Test
+    public void updateBookAuthor() {
+        String BOOK_ID = "f10c4545-260a-4cc1-a7d8-fc6d9f5ffd4d";
+        String LUCAS_ID = "316d39e5-f6a6-40f4-855d-912e405ff8d7";
+
+        Book book = bookRepository.findById(UUID.fromString(BOOK_ID)).orElse(null);
+        Author author = authorRepository.findById(UUID.fromString(LUCAS_ID)).orElse(null);
+
+        if (author != null && book != null) {
+            book.setAuthor(author);
+            bookRepository.save(book);
+        }
+    }
+
+    @Test
+    public void deleteById() {
+        String BOOK_ID = "8f99d092-0df0-41c4-8e5d-9303a7a74ac5";
+        bookRepository.deleteById(UUID.fromString(BOOK_ID));
     }
 }
