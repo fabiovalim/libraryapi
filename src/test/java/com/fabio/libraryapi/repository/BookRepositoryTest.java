@@ -75,4 +75,15 @@ public class BookRepositoryTest {
         String BOOK_ID = "8f99d092-0df0-41c4-8e5d-9303a7a74ac5";
         bookRepository.deleteById(UUID.fromString(BOOK_ID));
     }
+
+    @Test
+    public void findBookById() {
+        String ID = "f10c4545-260a-4cc1-a7d8-fc6d9f5ffd4d";
+        Book book = bookRepository.findById(UUID.fromString(ID)).orElse(null);
+
+        if (book != null) {
+            System.out.println("TÍTULO: " + book.getTitle());
+            System.out.println("AUTOR: " + book.getAuthor().getName());
+        }
+    }
 }
